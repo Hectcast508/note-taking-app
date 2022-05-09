@@ -8,7 +8,9 @@ router.get('/notes', (req, res) => {
 });
 
 router.post('/notes', (req, res) => {
-  req.body.id = uniqueId();
+  if(req.body.id === '') {
+    req.body.id = uniqueId();
+  }
   const note = createNewNote(req.body, notes);
   res.json(note);
 });
